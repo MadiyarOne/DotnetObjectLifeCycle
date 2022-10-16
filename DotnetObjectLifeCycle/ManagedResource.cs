@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace DotnetObjectLifeCycle;
@@ -104,6 +105,24 @@ public class ManagedResource : IDisposable
         Dispose(false);
     }
 }
+
+class InheritedManagedResource : ManagedResource
+{
+    private Stream _networkStream;
+    public InheritedManagedResource(string filename, Logger logger, Stream networkStream) : base(filename, logger)
+    {
+        _networkStream = networkStream;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        _networkStream?.Close();
+        _networkStream = null;
+        base.Dispose(disposing);
+    }
+}
+
+
 
 public class Logger : IDisposable
 {
