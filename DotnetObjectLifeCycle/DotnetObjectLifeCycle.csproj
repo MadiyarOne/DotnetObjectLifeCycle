@@ -10,6 +10,13 @@
     <ItemGroup>
       <Compile Remove="Program.cs" />
       <None Include="GarbageGeneration.cs" />
+      <Compile Remove="DisposableExample.cs" />
+      <None Include="DisposableExample.cs" />
+      <Compile Remove="GarbageGeneration.cs" />
+      <None Include="GarbageGeneration.cs" />
+      <None Update="Dummy.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
